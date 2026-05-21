@@ -13,6 +13,8 @@ import {
   RefreshCw,
 } from 'lucide-react';
 import bundledChangelog from '../../../CHANGELOG.md?raw';
+import { StepImport, type StepImportProps } from './StepImport';
+import type { ExtractedResumeData } from '@/lib/resumeImporter';
 
 const GITHUB_TEMPLATE_URL =
   'https://github.com/git-vitae/git-vitae.github.io/generate';
@@ -1456,6 +1458,7 @@ function StepDone() {
 function ProgressBar({ current, total }: { current: number; total: number }) {
   const labels = [
     'Welcome',
+    'Import resume',
     'GitHub account',
     'Copy template',
     'Enable Pages',
@@ -1479,7 +1482,7 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
           </div>
         ))}
       </div>
-      <div className="mb-3hidden grid grid-cols-6 gap-2 text-center text-xs font-medium text-gray-500 md:grid">
+      <div className="mb-3hidden grid grid-cols-7 gap-2 text-center text-xs font-medium text-gray-500 md:grid">
         {labels.map((label, i) => (
           <span
             key={label}
@@ -1502,16 +1505,26 @@ function ProgressBar({ current, total }: { current: number; total: number }) {
 
 // ─── Main wizard ──────────────────────────────────────────────────────────────
 
-const STEP_COUNT = 6;
+const STEP_COUNT = 7;
 
 export function SetupPage() {
   const [step, setStep] = useState(0);
+  const [resumeData, setResumeData] = useState<ExtractedResumeData | null>(null);
 
   const next = () => setStep((s) => Math.min(s + 1, STEP_COUNT - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
 
   const steps = [
     <StepWelcome onNext={next} />,
+    <StepImport
+      onNext={(data) => {
+        if (data) {
+          setResumeData(data);
+        }
+        next();
+      }}
+      onSkip={next}
+    />,
     <StepAccount onNext={next} />,
     <StepTemplate onNext={next} />,
     <StepPages onNext={next} />,

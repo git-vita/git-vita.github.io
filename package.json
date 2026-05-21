@@ -74,6 +74,7 @@
     "@mlc-ai/web-llm": "^0.2.83",
     "@radix-ui/react-progress": "^1.1.8",
     "lenis": "^1.3.23",
+    "pdfjs-dist": "^4.10.38",
     "radix-ui": "^1.4.3",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1"

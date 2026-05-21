@@ -7,7 +7,7 @@ San Francisco, CA · git-vitae@proton.me · [Github](https://github.com/youruser
 
 ## Summary
 
-I'm a full-stack engineer with 5+ years of experience building products
+I'm a portfolio-resume engineer with 5+ years of experience building products
 that people love. I specialize in React, Node.js, and distributed systems.
 When I'm not coding, I'm hiking trails or experimenting with new coffee
 brewing methods.
